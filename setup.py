@@ -32,7 +32,7 @@ def version():
 
 setup(
       # Application name:
-      name="PyPika",
+      name="ProPyPika",
 
       # Version number:
       version=version(),
@@ -45,7 +45,7 @@ setup(
       license='Apache License Version 2.0',
 
       # Packages
-      packages=["pypika", "pypika.clickhouse"],
+      packages=["propypika", "propypika.clickhouse"],
 
       # Include additional files into the package
       package_data={"pypika": ["py.typed"]},
