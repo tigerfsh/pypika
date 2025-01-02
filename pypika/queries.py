@@ -2,6 +2,8 @@ from copy import copy
 from functools import reduce
 from typing import Any, List, Optional, Sequence, Tuple as TypedTuple, Type, Union
 
+from ordered_set import OrderedSet
+
 from pypika.enums import Dialects, JoinType, ReferenceOption, SetOperation
 from pypika.terms import (
     ArithmeticExpression,
@@ -1278,7 +1280,7 @@ class QueryBuilder(Selectable, Term):
             if self._joins:
                 joins = [join.get_sql(**kwargs) for join in self._joins]
                 if enable_normalize:
-                    joins = set(joins)
+                    joins = OrderedSet(joins)
                 querystring += " " + " ".join(joins)
 
             querystring += self._set_sql(**kwargs)
@@ -1343,7 +1345,7 @@ class QueryBuilder(Selectable, Term):
         if self._joins:
             joins = [join.get_sql(**kwargs) for join in self._joins]
             if enable_normalize:
-                joins = set(joins)
+                joins = OrderedSet(joins)
 
             querystring += " " + " ".join(joins)
 

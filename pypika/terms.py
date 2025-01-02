@@ -886,7 +886,11 @@ class BasicCriterion(Criterion):
         normalize = kwargs.get('normalize')
         left = self.left.get_sql(quote_char=quote_char, **kwargs)
         right = self.right.get_sql(quote_char=quote_char, **kwargs)
-        left, right = (right, left) if normalize and right < left else (left, right)
+        left, right = (
+            (right, left)
+            if normalize and isinstance(self.left, Field) and isinstance(self.right, Field) and right < left
+            else (left, right)
+        )
         sql = "{left}{comparator}{right}".format(
             comparator=self.comparator.value,
             left=left,
