@@ -51,7 +51,9 @@ setup(
       package_data={"pypika": ["py.typed"]},
       include_package_data=True,
 
-      install_requires=[],
+      install_requires=[
+          'ordered-set>=4.1.0'
+      ],
 
       # Details
       url="https://github.com/kayak/pypika",
